@@ -37,7 +37,6 @@ function drawBall(ballX, ballY){
 function drawPeddle(peddleX){
   canvas.fillRect(peddleX, 550, peddleWidth, 10);
   canvas.stroke();
-  console.log(peddleX)
 }
 
 function drawBrick(brickX, brickY){
@@ -74,7 +73,6 @@ function startGame(){
     }
     bricksX[i] = x;
     bricksY[i] = y;
-    console.log(bricksX[i], bricksY[i]);
   }
 }
 
@@ -167,23 +165,6 @@ function moveBall(){
       ballDirection = "south";
     }
   }
-  if (peddleWidth == 50){
-    if (ballX >= peddleX && ballX <= (peddleX + 17)){
-      if (ballY >= 540 && ballY<= 560){
-        ballDirection = "northWest";
-      }
-    }
-    if (ballX >= peddleX + 17 && ballX <= (peddleX + 34)){
-      if (ballY >= 540 && ballY <= 560){
-        ballDirection = "north";
-      }
-    }
-    if (ballX >= peddleX + 34 && ballX <= (peddleX + 50)){
-      if (ballY >= 540 && ballY <= 560){
-        ballDirection = "northEast";
-      }
-    }
-  }
   if (peddleWidth == 100){
     if (ballX >= peddleX && ballX <= (peddleX + 33)){
       if (ballY >= 540 && ballY<= 560){
@@ -201,23 +182,6 @@ function moveBall(){
       }
     }
   }
-  if (peddleWidth == 150){
-    if (ballX >= peddleX && ballX <= (peddleX + 50)){
-      if (ballY >= 540 && ballY<= 560){
-        ballDirection = "northWest";
-      }
-    }
-    if (ballX >= peddleX + 50 && ballX <= (peddleX + 100)){
-      if (ballY >= 540 && ballY <= 560){
-        ballDirection = "north";
-      }
-    }
-    if (ballX >= peddleX + 100 && ballX <= (peddleX + 150)){
-      if (ballY >= 540 && ballY <= 560){
-        ballDirection = "northEast";
-      }
-    }
-  }
   checkBricks();
   drawBall(ballX, ballY);
 }
@@ -227,24 +191,6 @@ function checkBricks(){
     if (ballX >= bricksX[i]  && ballX <= bricksX[i] +brickWidth ){
       if ( ballY >= bricksY[i] && ballY <= bricksY[i] +brickheigth){
         canvas.clearRect(bricksX[i], bricksY[i], brickWidth, brickheigth);
-        switch (Math.floor((Math.random() * 100) + 1)){
-          case 1:{
-            peddleWidth = peddleWidth +50;
-            if (peddleWidth >151){
-              peddleWidth = 150;
-            }
-            console.log(peddleWidth);
-          break;
-          }
-          case 2:{
-            peddleWidth = peddleWidth -50;
-            if (peddleWidth <49){
-              peddleWidth = 50;
-            }
-            console.log(peddleWidth);
-          break;
-          }
-        }
         bricksX[i] = 600;
         bricksY[i] = 0;
         if (ballDirection == "northEast"){
@@ -255,7 +201,6 @@ function checkBricks(){
         }
         if (ballDirection == "north"){
           ballDirection = "south";
-          console.log("#nietDeBedoeling")
         }
       }
     }
